@@ -28,6 +28,9 @@ try{
 
     if (!response.ok) {
         // Figure out what to do when the response is bad
+        const badResponse = '<div class="alert alert-warning" role="alert">Oops Bad Response</div>'
+        const alert = document.querySelector('main');
+        alert.innerHTML += badResponse;
         console.log("Bad response")
       } else {
         const data = await response.json();
@@ -115,6 +118,9 @@ try{
       }
     } catch (e) {
       // Figure out what to do if an error is raised
-      console.log('Error',e)
+      const error = '<div class="alert alert-danger" role="alert">Error encountered</div>'
+      const alert = document.querySelector('main');
+      alert.innerHTML += error;
+      // console.log('Error',e)
     }
 });
