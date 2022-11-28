@@ -1,4 +1,4 @@
-function createCard(name, description, pictureUrl, starts, ends){
+function createCard(name, description, pictureUrl, starts, ends,location){
     // console.log(name, description, pictureUrl)
     return `
     <div class="col">
@@ -6,6 +6,7 @@ function createCard(name, description, pictureUrl, starts, ends){
     <img src="${pictureUrl}" class="card-img-top">
     <div class="card-body">
     <h5 class="card-title">${name}</h5>
+    <p class="card-text"><small class="text-muted">${location}</small></p>
     <p class="card-text">${description}</p>
     </div>
     <div class="card-footer">
@@ -43,7 +44,8 @@ try{
                 const pictureUrl = details.conference.location.picture_url;
                 const starts = new Date(details.conference.starts).toLocaleDateString('en-US');
                 const ends = new Date(details.conference.ends).toLocaleDateString('en-US');
-                const html = createCard(title, description, pictureUrl, starts, ends);
+                const location = details.conference.location.name;
+                const html = createCard(title, description, pictureUrl, starts, ends, location);
                 // console.log(html)
                 // cardArr.push(html)
 
