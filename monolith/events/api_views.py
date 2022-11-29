@@ -140,6 +140,7 @@ def api_show_conference(request, pk):
 @require_http_methods(["GET", "POST"])
 def api_list_locations(request):
     """
+
     Lists the location names and the link to the location.
 
     Returns a dictionary with a single key "locations" which
@@ -157,6 +158,7 @@ def api_list_locations(request):
         ]
     }
     """
+    print(f"{request.method} came in")
     if request.method == "GET":
         locations = Location.objects.all()
         return JsonResponse(
@@ -164,6 +166,7 @@ def api_list_locations(request):
             encoder=LocationListEncoder,
         )
     else:
+        print(request.body)
         content = json.loads(request.body)
 
         try:
@@ -231,3 +234,15 @@ def api_show_location(request, pk):
             encoder=LocationDetailEncoder,
             safe=False,
         )
+
+@require_http_methods(['GET'])
+def api_list_states(request):
+    all_states = State.objects.order_by('name')
+    state_list = []
+    for states in all_states:
+        d = {}
+        d[states.name]=states.abbreviation
+        state_list.append(d)
+    return JsonResponse(
+        {"states": state_list}
+    )
