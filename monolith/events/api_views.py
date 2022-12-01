@@ -241,8 +241,10 @@ def api_list_states(request):
     all_states = State.objects.order_by('name')
     state_list = []
     for states in all_states:
-        d = {}
-        d[states.name]=states.abbreviation
+        d = {
+            'abbreviation': states.abbreviation,
+            'name': states.name,
+        }
         state_list.append(d)
     return JsonResponse(
         {"states": state_list}

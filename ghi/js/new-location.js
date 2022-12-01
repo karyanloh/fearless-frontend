@@ -16,11 +16,8 @@ window.addEventListener('DOMContentLoaded', async() =>{
             const selectTag = document.getElementById('state');
             for(let state of data.states){
                 let option = document.createElement('option')
-                let stateName = Object.keys(state)[0]
-                let stateAbbrv = Object.values(state)[0]
-                // console.log(stateAbbrv, stateName)
-                option.value += stateAbbrv;
-                option.innerHTML += stateName;
+                option.value += state.abbreviation;
+                option.innerHTML += state.name;
                 selectTag.appendChild(option)
             }
             //add event to listen for submit
